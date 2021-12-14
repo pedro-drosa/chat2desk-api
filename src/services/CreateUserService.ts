@@ -7,7 +7,7 @@ export default class CreateUserService {
   public async execute({ name, email, password }: Omit<IUser,"id">) {
     const userExists = db.findByEmail(email);
 
-    if(userExists > 0) {
+    if(userExists) {
       throw new Error("User already exists").message;
     }
 

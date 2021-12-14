@@ -16,9 +16,9 @@ class Database {
     return this.users;
   }
 
-  public findByEmail(value: string): number {
+  public findByEmail(value: string) {
     const data = this.users.filter(data => data.email === value);
-    return data.length;
+    return data[0];
   }
 }
 
