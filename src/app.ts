@@ -1,12 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
+import routes from './routes';
+
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
-
-app.get('/', (req, res) => res.json({message: 'Hello Chat2Desk'}));
+app.use(routes);
 
 export default app;
