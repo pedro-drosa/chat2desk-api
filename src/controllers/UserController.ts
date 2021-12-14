@@ -1,7 +1,23 @@
 import { Request, Response } from "express";
+import db from "../Database";
+import CreateUserService from "../services/CreateUserService";
+
+const userService = new CreateUserService();
 
 export default class UserController {
-  public store (req: Request, res: Response) {
-    return res.json({message: 'Hello Chat2Desk'});
+  public async store(req: Request, res: Response) {
+    try {
+      const { name, email, password } = req.body;
+      const user = await userService.execute({ name, email, password });
+      
+      return res.status(200).json(user);
+    } catch (error) {
+      return res.status(400).json({ error });
+    }
+  }
+
+  public index(req: Request, res:Response) {
+    const data = db.find();
+    return res.status(200).json(data);
   }
 }
