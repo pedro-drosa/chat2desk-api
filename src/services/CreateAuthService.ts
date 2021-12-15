@@ -10,12 +10,12 @@ const createToken = new CreateTokenService();
 
 export default class CreateAuthService {
   public async execute({ email, password }: Omit<IUser, "id" | "name">) {
-    const user = User.findByEmail(email);
-
     let schema = yup.object().shape({
       email: yup.string().email().required(),
       password: yup.string().required().min(6),
     });
+
+    const user = User.findByEmail(email);
 
     if(!(await schema.isValid({email, password}))){
       return { error: "validation error, please check the data" };

@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcryptjs';
+import * as yup from 'yup';
 
 import User from "../models/User";
 import CreateTokenService from './CreateTokenService';
@@ -10,10 +11,20 @@ const createToken = new CreateTokenService();
 
 export default class CreateUserService {
   public async execute({ name, email, password }: Omit<IUser,"id">) {
+    let schema = yup.object().shape({
+      name: yup.string().required(),
+      email: yup.string().email().required(),
+      password: yup.string().required().min(6),
+    });
+
+    if(!(await schema.isValid({name, email, password}))){
+      return { error: "validation error, please check the data" };
+    }
+
     const userExists = User.findByEmail(email);
 
     if(userExists) {
-      throw new Error("User already exists").message;
+      return { error: "User already exists" };
     }
 
     const hash = await bcrypt.hash(password, 5);
