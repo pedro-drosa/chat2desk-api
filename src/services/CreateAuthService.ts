@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
+import * as yup from 'yup';
 
-import db from "../Database";
+import User from "../models/User";
 import CreateTokenService from './CreateTokenService';
 
 import IUser from "../interfaces/IUser";
@@ -9,14 +10,23 @@ const createToken = new CreateTokenService();
 
 export default class CreateAuthService {
   public async execute({ email, password }: Omit<IUser, "id" | "name">) {
-    const user = db.findByEmail(email);
+    const user = User.findByEmail(email);
+
+    let schema = yup.object().shape({
+      email: yup.string().email().required(),
+      password: yup.string().required().min(6),
+    });
+
+    if(!(await schema.isValid({email, password}))){
+      return { error: "validation error, please check the data" };
+    }
 
     if(user.email !== email) {
-      throw new Error("username or password not found").message;
+      return { error: "username or password not found" };
     }
 
     if(! await bcrypt.compare(password, user.password)) {
-      throw new Error("username or password not found").message;
+      return { error: "username or password not found" };
     }
 
     return { user, token: createToken.execute(user.id) };

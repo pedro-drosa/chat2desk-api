@@ -1,6 +1,6 @@
-import IUser from "./interfaces/IUser";
+import IUser from "../interfaces/IUser";
 
-class Database {
+class User {
   private users: IUser[];
 
   constructor() {
@@ -22,4 +22,4 @@ class Database {
   }
 }
 
-export default new Database();
+export default new User();

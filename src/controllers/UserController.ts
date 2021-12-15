@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import db from "../Database";
+import User from "../models/User";
 import CreateUserService from "../services/CreateUserService";
 
 const userService = new CreateUserService();
@@ -17,7 +17,7 @@ export default class UserController {
   }
 
   public index(req: Request, res:Response) {
-    const data = db.find();
+    const data = User.find();
     return res.status(200).json(data);
   }
 }
