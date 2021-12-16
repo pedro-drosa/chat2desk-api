@@ -7,5 +7,6 @@ const userController = new UserController();
 
 usersRouter.post('/users', userController.store);
 usersRouter.get('/users', authMiddleware, userController.index);
+usersRouter.delete('/users/:id', userController.delete);
 
 export default usersRouter;

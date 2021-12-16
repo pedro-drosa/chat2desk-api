@@ -12,16 +12,22 @@ class User {
     return this.users[this.users.length - 1];
   }
 
-  public find() {
-    const users = this.users.map((user) => {
-      return { name: user.name, email: user.email };
-    });
-    return users;
+  public delete(id: string) {
+    const index = this.users.findIndex((user) => user.id === id);
+    this.users.splice(index, 1);
+    return;
   }
 
-  public findByEmail(value: string) {
-    const data = this.users.filter((data) => data.email === value);
-    return data[0];
+  public find() {
+    return this.users.map((user) => ({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    }));
+  }
+
+  public findByEmail(email: string) {
+    return this.users.filter((data) => data.email === email)[0];
   }
 }
 
