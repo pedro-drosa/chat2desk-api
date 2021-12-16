@@ -4,7 +4,36 @@ class User {
   private users: IUser[];
 
   constructor() {
-    this.users = [];
+    this.users = [{
+      id: "1",
+      email: "kalel@chat2desk.com",
+      name: "Kalel",
+      password: "123456",
+    },
+    {
+      id: "2",
+      email: "pedro@chat2desk.com",
+      name: "Pedro",
+      password: "123456",
+    },
+    {
+      id: "3",
+      email: "daiane@chat2desk.com",
+      name: "Daiane",
+      password: "123456",
+    },
+    {
+      id: "4",
+      email: "paulo@chat2desk.com",
+      name: "Paulo",
+      password: "123456",
+    },
+    {
+      id: "5",
+      email: "ana@chat2desk.com",
+      name: "Ana",
+      password: "123456",
+    },];
   }
 
   public create(user: IUser) {

@@ -26,7 +26,7 @@ export default class UserController {
 
   public delete(req: Request, res: Response) {
     const { id } = req.params;
-    const user = removeService.execute(id);
-    return res.status(200).json(user);
+    removeService.execute(id);
+    return res.status(200).send();
   }
 }
