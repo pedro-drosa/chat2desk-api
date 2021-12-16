@@ -3,7 +3,7 @@
 ### **🚀 Sobre este projeto**
 
 Uma api para cadastre listagem de usuários e autenticação.</br>
-Os arquivos são armazenados na memória da aplicação</br>
+Os arquivos são armazenados na memória da aplicação.</br>
 
 ### **🛠 Tecnologias:**
 
