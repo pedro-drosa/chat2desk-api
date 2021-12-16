@@ -1,8 +1,8 @@
-import bcrypt from 'bcryptjs';
-import * as yup from 'yup';
+import bcrypt from "bcryptjs";
+import * as yup from "yup";
 
 import User from "../models/User";
-import CreateTokenService from './CreateTokenService';
+import CreateTokenService from "./CreateTokenService";
 
 import IUser from "../interfaces/IUser";
 
@@ -17,15 +17,15 @@ export default class CreateAuthService {
 
     const user = User.findByEmail(email);
 
-    if(!(await schema.isValid({email, password}))){
+    if (!(await schema.isValid({ email, password }))) {
       return { error: "validation error, please check the data" };
     }
 
-    if(user.email !== email) {
+    if (user.email !== email) {
       return { error: "username or password not found" };
     }
 
-    if(! await bcrypt.compare(password, user.password)) {
+    if (!(await bcrypt.compare(password, user.password))) {
       return { error: "username or password not found" };
     }
 

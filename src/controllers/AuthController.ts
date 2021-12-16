@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import CreateAuthService from "../services/CreateAuthService";
 
-const createAuth = new CreateAuthService;
+const createAuth = new CreateAuthService();
 
 export default class AuthController {
   public async store(req: Request, res: Response) {
@@ -11,7 +11,7 @@ export default class AuthController {
 
       return res.json(user);
     } catch (error) {
-      return res.status(404).json({ error: 'Username or password not found' });
+      return res.status(404).json({ error: "Username or password not found" });
     }
   }
 }

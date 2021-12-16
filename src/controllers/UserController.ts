@@ -9,14 +9,14 @@ export default class UserController {
     try {
       const { name, email, password } = req.body;
       const user = await userService.execute({ name, email, password });
-      
+
       return res.status(200).json(user);
     } catch (error) {
       return res.status(400).json({ error });
     }
   }
 
-  public index(req: Request, res:Response) {
+  public index(req: Request, res: Response) {
     const data = User.find();
     return res.status(200).json(data);
   }

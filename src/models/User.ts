@@ -4,7 +4,7 @@ class User {
   private users: IUser[];
 
   constructor() {
-   this.users = []
+    this.users = [];
   }
 
   public create(user: IUser) {
@@ -13,14 +13,14 @@ class User {
   }
 
   public find() {
-    const users = this.users.map( user => { 
-      return { name: user.name, email: user.email }
+    const users = this.users.map((user) => {
+      return { name: user.name, email: user.email };
     });
     return users;
   }
 
   public findByEmail(value: string) {
-    const data = this.users.filter(data => data.email === value);
+    const data = this.users.filter((data) => data.email === value);
     return data[0];
   }
 }
