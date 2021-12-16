@@ -13,7 +13,10 @@ class User {
   }
 
   public find() {
-    return this.users;
+    const users = this.users.map( user => { 
+      return { name: user.name, email: user.email }
+    });
+    return users;
   }
 
   public findByEmail(value: string) {
