@@ -7,7 +7,7 @@ const userController = new UserController();
 
 usersRouter.post("/users", userController.store);
 usersRouter.get("/users", authMiddleware, userController.index);
-usersRouter.delete("/users/:id", userController.delete);
-usersRouter.patch("/users/:id", userController.update);
+usersRouter.delete("/users/:id", authMiddleware, userController.delete);
+usersRouter.patch("/users/:id", authMiddleware, userController.update);
 
 export default usersRouter;

@@ -18,9 +18,9 @@ class User {
     return;
   }
 
-  public update(id: string, data:IUser) {
+  public update(id: string, data: IUser) {
     const index = this.users.findIndex((user) => user.id === id);
-    return this.users[index] = data;
+    return (this.users[index] = data);
   }
 
   public find() {
@@ -32,7 +32,7 @@ class User {
   }
 
   public findById(id: string) {
-    return this.users.find((user) => user.id === id );
+    return this.users.find((user) => user.id === id);
   }
 
   public findByEmail(email: string) {
