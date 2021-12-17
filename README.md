@@ -67,6 +67,10 @@ JSON é o formato de dados padrão fornecido pela API.
 
 `GET` `/users` - lista todos os usuários cadastrados. é necessário enviar um token.
 
+`DEL` `/users` - deleta um usuário. é necessário enviar um token.
+
+`PATCH` `/users` - atualiza nome e/ou senha de um usuário. é necessário enviar um token.
+
 
 ## **📝 Licença**
 
