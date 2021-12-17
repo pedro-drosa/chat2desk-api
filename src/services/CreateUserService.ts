@@ -1,8 +1,7 @@
 import { v4 as uuid } from "uuid";
 import * as yup from "yup";
 
-import generateHash from "../helpers/generatehash";
-
+import generateHash from "../helpers/generateHash";
 import User from "../models/User";
 import CreateTokenService from "./CreateTokenService";
 
