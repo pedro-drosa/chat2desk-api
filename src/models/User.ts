@@ -4,36 +4,7 @@ class User {
   private users: IUser[];
 
   constructor() {
-    this.users = [{
-      id: "1",
-      email: "kalel@chat2desk.com",
-      name: "Kalel",
-      password: "123456",
-    },
-    {
-      id: "2",
-      email: "pedro@chat2desk.com",
-      name: "Pedro",
-      password: "123456",
-    },
-    {
-      id: "3",
-      email: "daiane@chat2desk.com",
-      name: "Daiane",
-      password: "123456",
-    },
-    {
-      id: "4",
-      email: "paulo@chat2desk.com",
-      name: "Paulo",
-      password: "123456",
-    },
-    {
-      id: "5",
-      email: "ana@chat2desk.com",
-      name: "Ana",
-      password: "123456",
-    },];
+    this.users = [];
   }
 
   public create(user: IUser) {
@@ -47,6 +18,11 @@ class User {
     return;
   }
 
+  public update(id: string, data:IUser) {
+    const index = this.users.findIndex((user) => user.id === id);
+    return this.users[index] = data;
+  }
+
   public find() {
     return this.users.map((user) => ({
       id: user.id,
@@ -55,8 +31,12 @@ class User {
     }));
   }
 
+  public findById(id: string) {
+    return this.users.find((user) => user.id === id );
+  }
+
   public findByEmail(email: string) {
-    return this.users.filter((data) => data.email === email)[0];
+    return this.users.filter((user) => user.email === email)[0];
   }
 }
 

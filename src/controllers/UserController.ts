@@ -3,9 +3,11 @@ import User from "../models/User";
 
 import CreateUserService from "../services/CreateUserService";
 import RemoveUserService from "../services/RemoveUserService";
+import UpdateUserService from "../services/UpdateUserService";
 
 const createService = new CreateUserService();
 const removeService = new RemoveUserService();
+const updateService = new UpdateUserService();
 
 export default class UserController {
   public async store(req: Request, res: Response) {
@@ -28,5 +30,12 @@ export default class UserController {
     const { id } = req.params;
     removeService.execute(id);
     return res.status(200).send();
+  }
+
+  public async update(req: Request, res: Response) {
+    const { id } = req.params;
+    const { name, password } = req.body;
+    const data = await updateService.execute(id, { id, name, password });
+    return res.status(200).json(data);
   }
 }

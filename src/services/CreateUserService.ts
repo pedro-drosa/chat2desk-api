@@ -1,6 +1,7 @@
 import { v4 as uuid } from "uuid";
-import bcrypt from "bcryptjs";
 import * as yup from "yup";
+
+import generateHash from "../helpers/generatehash";
 
 import User from "../models/User";
 import CreateTokenService from "./CreateTokenService";
@@ -27,7 +28,8 @@ export default class CreateUserService {
       return { error: "User already exists" };
     }
 
-    const hash = await bcrypt.hash(password, 5);
+    const hash = await generateHash(password);
+    
     const user = User.create({ id: uuid(), name, email, password: hash });
 
     return { user, token: createToken.execute(user.id) };
